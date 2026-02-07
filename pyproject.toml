@@ -1,0 +1,16 @@
+[project]
+name = "pyinfra_incus_connector"
+version = "0.0.1"
+description = "A pyinfra connector for incus."
+readme = "README.md"
+authors = [
+    { name = "Alex Wehrli" }
+]
+requires-python = ">=3.12,<4"
+dependencies = [
+    "pyinfra>3.5"
+]
+
+[build-system]
+requires = ["uv_build>=0.9.17,<0.10.0"]
+build-backend = "uv_build"
