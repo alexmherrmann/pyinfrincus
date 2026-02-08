@@ -104,19 +104,20 @@ class Incus(BaseConnector):
             local_path = filename_or_io
 
         target = f"{container_name}{remote_filename}"
-        cmd = ["incus", "file", "push", local_path, target]
+        shell_cmd = f"incus file push {shlex.quote(local_path)} {shlex.quote(target)}"
 
         if print_input:
             print(f"{container_name}>>> pushing {local_path} to {remote_filename}")
 
-        result = subprocess.run(cmd, capture_output=True, text=True)
+        print_prefix = f"{container_name}>>> " if print_output else ""
 
-        if print_output and result.stdout:
-            print(result.stdout)
-        if print_output and result.stderr:
-            print(result.stderr)
+        returncode, _ = run_local_process(
+            shell_cmd,
+            print_output=print_output,
+            print_prefix=print_prefix,
+        )
 
-        return result.returncode == 0
+        return returncode == 0
 
     def get_file(
         self,
@@ -139,23 +140,24 @@ class Incus(BaseConnector):
         else:
             local_path = filename_or_io
 
-        cmd = ["incus", "file", "pull", source, local_path]
+        shell_cmd = f"incus file pull {shlex.quote(source)} {shlex.quote(local_path)}"
 
         if print_input:
             print(f"{container_name}>>> pulling {remote_filename} to {local_path}")
 
-        result = subprocess.run(cmd, capture_output=True, text=True)
+        print_prefix = f"{container_name}>>> " if print_output else ""
+
+        returncode, _ = run_local_process(
+            shell_cmd,
+            print_output=print_output,
+            print_prefix=print_prefix,
+        )
 
         if isinstance(filename_or_io, IOBase):
             with open(local_path, "rb") as f:
                 filename_or_io.write(f.read())
 
-        if print_output and result.stdout:
-            print(result.stdout)
-        if print_output and result.stderr:
-            print(result.stderr)
-
-        return result.returncode == 0
+        return returncode == 0
 
     def connect(self) -> None:
         """
