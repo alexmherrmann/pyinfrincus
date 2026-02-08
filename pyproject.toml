@@ -1,6 +1,6 @@
 [project]
-name = "pyinfra_incus_connector"
-version = "0.0.2"
+name = "pyinfrincus"
+version = "0.0.3"
 description = "A pyinfra connector for incus."
 readme = "README.md"
 authors = [
