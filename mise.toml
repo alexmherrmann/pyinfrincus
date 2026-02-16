@@ -1,0 +1,12 @@
+min_version = "2025.1.0"
+
+[tools]
+python = "3.13"
+uv = "latest"
+
+[env]
+_.python.venv = { path = ".venv", create = true, uv_create_args = ["--seed"] }
+
+[tasks.test]
+description = "Run e2e sanity tests"
+run = "uv run --group test pytest tests/e2e_sanity.py -v"

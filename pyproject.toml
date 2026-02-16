@@ -11,6 +11,9 @@ dependencies = [
     "pyinfra>3.5"
 ]
 
+[dependency-groups]
+test = ["pytest"]
+
 [build-system]
 requires = ["uv_build>=0.9.12,<0.10.0"]
 build-backend = "uv_build"
