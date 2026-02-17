@@ -17,3 +17,6 @@ test = ["pytest"]
 [build-system]
 requires = ["uv_build>=0.9.12,<0.10.0"]
 build-backend = "uv_build"
+
+[project.entry-points.'pyinfra.connectors']
+incus = "pyinfrincus.connector.incus:Incus"
