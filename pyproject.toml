@@ -1,12 +1,12 @@
 [project]
 name = "pyinfrincus"
-version = "0.1.1"
+version = "0.2.0"
 description = "A pyinfra connector for incus."
 readme = "README.md"
 authors = [
     { name = "Alex Wehrli" }
 ]
-requires-python = ">=3.12,<4"
+requires-python = ">=3.10,<4"
 dependencies = [
     "pyinfra>3.5"
 ]
@@ -15,7 +15,7 @@ dependencies = [
 test = ["pytest"]
 
 [build-system]
-requires = ["uv_build>=0.9.12,<0.10.0"]
+requires = ["uv_build>=0.10.0,<0.11.0"]
 build-backend = "uv_build"
 
 [project.entry-points.'pyinfra.connectors']
