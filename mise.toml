@@ -7,6 +7,8 @@ uv = "0.10"
 [env]
 _.python.venv = { path = ".venv", create = true, uv_create_args = ["--seed"] }
 
+[tasks]
+pub = "uv build --clear && uv publish"
 [tasks.test]
 description = "Run e2e sanity tests"
 run = "uv run --group test pytest tests/e2e_sanity.py -v"
