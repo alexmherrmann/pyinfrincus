@@ -12,7 +12,7 @@ body = """
 {% endif %}\
 {% for group, commits in commits | group_by(attribute="group") %}
     {% for commit in commits %}\
-        - **{{group}}**: {% if commit.breaking %}[**breaking**] {% endif %}{{ commit.message | upper_first }}
+        - **{{group | upper_first}}**: {% if commit.breaking %}[**breaking**] {% endif %}{{ commit.message | upper_first }}
     {% endfor %}\
 {% endfor %}\n
 """
@@ -21,6 +21,6 @@ body = """
 commit_parsers = [
     { message = "^feat:", group = "Feature" },
     { message = "^fix:", group = "Fix" },
-    { message = "^chore:", skip = true },
+    { message = "^chore:", group = "Chore", skip = true },
     { message = ".*", group = "Other" },
 ]
