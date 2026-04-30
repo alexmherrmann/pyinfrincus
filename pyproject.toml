@@ -1,6 +1,6 @@
 [project]
 name = "pyinfrincus"
-version = "0.6.2"
+version = "0.7.0-rc.0"
 description = "A pyinfra connector for incus."
 readme = "README.md"
 license = "MIT"
