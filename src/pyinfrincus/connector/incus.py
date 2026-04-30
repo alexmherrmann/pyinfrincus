@@ -88,8 +88,7 @@ class Incus(BaseConnector):
 
         # This makes sure we run inside of the users shell.
         # This specifically allows things like mise or things on PATHs in the .profile to be used
-        arguments.setdefault("_sudo", True)
-        arguments.setdefault("_use_sudo_login", True)
+        arguments.update({"_sudo": True, "_use_sudo_login": True})
 
         full_command = make_unix_command_for_host(
             self.state, self.host, command, **arguments
@@ -101,7 +100,7 @@ class Incus(BaseConnector):
         print_prefix = f"{container_name}>>> " if print_output else ""
 
         if print_input:
-            print(f"{container_name}>>> {full_command}")
+            print(f"{container_name}>>> {shell_cmd}")
 
         returncode, output = run_local_process(
             shell_cmd,
