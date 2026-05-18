@@ -1,3 +1,6 @@
+## 0.8.1 - 2026-05-18
+- **Fix**: Use the correct command when running (thanks again @yagarea)
+
 ## 0.8.0 - 2026-05-18
 - **Fix**: StringIO should be handled correctly now (thanks @yagarea !) Fixes #3
 
