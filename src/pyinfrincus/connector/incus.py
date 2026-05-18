@@ -89,9 +89,11 @@ class Incus(BaseConnector):
         full_command = make_unix_command_for_host(
             self.state, self.host, command, **arguments
         )
+        # Splicing full_command into an f-string would call __str__, which returns
+        # the masked view (MaskString bits become "***") - fine for logs, broken on the wire.
+        raw_command = full_command.get_raw_value()
 
-        # Build the incus exec command as a shell string
-        shell_cmd = f"incus exec {shlex.quote(container_name)} -- {full_command}"
+        shell_cmd = f"incus exec {shlex.quote(container_name)} -- {raw_command}"
 
         print_prefix = f"{container_name}>>> " if print_output else ""
 
